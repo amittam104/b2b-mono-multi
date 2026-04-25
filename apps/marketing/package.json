@@ -1,10 +1,10 @@
 {
-  "name": "web",
+  "name": "marketing",
   "version": "0.0.1",
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "vite dev --port 3000",
+    "dev": "vite dev --port 3010",
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint",
