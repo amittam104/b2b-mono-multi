@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router"
+import { createFileRoute, useNavigate } from "@tanstack/react-router"
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -13,6 +13,8 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@workspace/ui/components/sidebar"
+import { Button } from "@workspace/ui/components/button"
+import { authClient } from "../../../../lib/auth-client"
 import { AppSidebar } from "@/components/app-sidebar"
 
 export const Route = createFileRoute("/_workspace/dashboard/")({
@@ -20,6 +22,14 @@ export const Route = createFileRoute("/_workspace/dashboard/")({
 })
 
 function App() {
+  const navigate = useNavigate()
+  const { data: session } = authClient.useSession()
+
+  async function signOut() {
+    await authClient.signOut({})
+    navigate({ to: "/" })
+  }
+
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -41,6 +51,14 @@ function App() {
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
+
+          {session?.user && (
+            <div className="flex flex-wrap items-center gap-3">
+              <Button variant="destructive" onClick={signOut}>
+                Sign Out
+              </Button>
+            </div>
+          )}
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4">
           <div className="grid auto-rows-min gap-4 md:grid-cols-3">
