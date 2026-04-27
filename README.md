@@ -2,7 +2,7 @@
 
 This is a TanStack Start monorepo template with shadcn/ui.
 
-## Adding components
+## Adding components and more
 
 To add components to your app, run the following command at the root of your `web` app:
 
