@@ -50,6 +50,9 @@ importers:
       better-auth:
         specifier: ^1.6.9
         version: 1.6.9(@tanstack/react-start@1.163.2(crossws@0.4.5(srvx@0.11.15))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(vite@7.3.2(@types/node@25.3.0)(jiti@2.6.1)(lightningcss@1.31.1)(tsx@4.21.0)))(mongodb@7.2.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      mondel:
+        specifier: ^0.2.4
+        version: 0.2.4(mongodb@7.2.0)(zod@4.3.6)
       mongodb:
         specifier: ~7.2.0
         version: 7.2.0
@@ -4170,6 +4173,14 @@ packages:
   mkdirp@0.5.6:
     resolution: {integrity: sha512-FP+p8RB8OWpF3YZBCrP5gtADmtXApB5AMLn+vdyA+PyxCjrCs00mjyUozssO33cwDeT3wNGdLxJ5M//YqtHAJw==}
     hasBin: true
+
+  mondel@0.2.4:
+    resolution: {integrity: sha512-g//ENnoV8jeGhJU5lOPrdr6t/9Z7xZozGSftgkv/5tnDXm5CjBuAW0fXM85wUTktSim8/IzoPHKaWN4GkGwO6g==}
+    engines: {node: '>=18.0.0'}
+    hasBin: true
+    peerDependencies:
+      mongodb: ^6.0.0 || ^7.0.0
+      zod: ^3.24.0 || ^4.0.0
 
   mongodb-connection-string-url@7.0.1:
     resolution: {integrity: sha512-h0AZ9A7IDVwwHyMxmdMXKy+9oNlF0zFoahHiX3vQ8e3KFcSP3VmsmfvtRSuLPxmyv2vjIDxqty8smTgie/SNRQ==}
@@ -9153,6 +9164,11 @@ snapshots:
   mkdirp@0.5.6:
     dependencies:
       minimist: 1.2.8
+
+  mondel@0.2.4(mongodb@7.2.0)(zod@4.3.6):
+    dependencies:
+      mongodb: 7.2.0
+      zod: 4.3.6
 
   mongodb-connection-string-url@7.0.1:
     dependencies:

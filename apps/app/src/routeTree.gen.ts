@@ -10,12 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiMondelTestRouteImport } from './routes/api/mondel-test'
 import { Route as WorkspaceDashboardIndexRouteImport } from './routes/_workspace/dashboard/index'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiMondelTestRoute = ApiMondelTestRouteImport.update({
+  id: '/api/mondel-test',
+  path: '/api/mondel-test',
   getParentRoute: () => rootRouteImport,
 } as any)
 const WorkspaceDashboardIndexRoute = WorkspaceDashboardIndexRouteImport.update({
@@ -31,30 +37,39 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/api/mondel-test': typeof ApiMondelTestRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/dashboard/': typeof WorkspaceDashboardIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/api/mondel-test': typeof ApiMondelTestRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/dashboard': typeof WorkspaceDashboardIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/api/mondel-test': typeof ApiMondelTestRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/_workspace/dashboard/': typeof WorkspaceDashboardIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/api/auth/$' | '/dashboard/'
+  fullPaths: '/' | '/api/mondel-test' | '/api/auth/$' | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/api/auth/$' | '/dashboard'
-  id: '__root__' | '/' | '/api/auth/$' | '/_workspace/dashboard/'
+  to: '/' | '/api/mondel-test' | '/api/auth/$' | '/dashboard'
+  id:
+    | '__root__'
+    | '/'
+    | '/api/mondel-test'
+    | '/api/auth/$'
+    | '/_workspace/dashboard/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApiMondelTestRoute: typeof ApiMondelTestRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
   WorkspaceDashboardIndexRoute: typeof WorkspaceDashboardIndexRoute
 }
@@ -66,6 +81,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/mondel-test': {
+      id: '/api/mondel-test'
+      path: '/api/mondel-test'
+      fullPath: '/api/mondel-test'
+      preLoaderRoute: typeof ApiMondelTestRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_workspace/dashboard/': {
@@ -87,6 +109,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApiMondelTestRoute: ApiMondelTestRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
   WorkspaceDashboardIndexRoute: WorkspaceDashboardIndexRoute,
 }
