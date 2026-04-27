@@ -7,7 +7,9 @@ import { nitro } from "nitro/vite"
 
 const config = defineConfig({
   plugins: [
-    nitro(),
+    nitro({
+      compatibilityDate: "2026-04-27",
+    }),
     viteTsConfigPaths({
       projects: ["./tsconfig.json"],
     }),
