@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite dev --port 3011",
     "build": "vite build",
+    "build:cloudflare": "NITRO_PRESET=cloudflare-module vite build",
     "preview": "vite preview",
     "lint": "eslint",
     "format": "prettier --write \"**/*.{ts,tsx}\"",
