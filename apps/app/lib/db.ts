@@ -4,16 +4,17 @@ import { MongoClient } from "mongodb"
 const uri = process.env.MONGODB_URI
 
 let connected = false
-let client: MongoClient
+
+if (!uri) {
+  throw new Error("MONGODB_URI is not defined in environment variables")
+}
+
+export const client = new MongoClient(uri)
+export const db = client.db()
 
 export async function connectToDatabase() {
-  if (!uri) {
-    throw new Error("MONGODB_URI is not defined in environment variables")
-  }
-
   if (!connected) {
     try {
-      client = new MongoClient(uri)
       await client.connect()
       connected = true
     } catch (error) {
@@ -22,5 +23,5 @@ export async function connectToDatabase() {
       )
     }
   }
-  return client.db()
+  return db
 }

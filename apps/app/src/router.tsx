@@ -7,9 +7,7 @@ import { routeTree } from "./routeTree.gen"
 export function getRouter() {
   const router = createTanStackRouter({
     routeTree,
-    defaultErrorComponent: ({ error, reset }) => (
-      <ErrorComponent error={error} />
-    ),
+    defaultErrorComponent: ({ error }) => <ErrorComponent error={error} />,
     scrollRestoration: true,
     defaultPreload: "intent",
     defaultPreloadStaleTime: 0,
